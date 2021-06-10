@@ -1,34 +1,53 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-    </p>
+    
+    <h1>
+      name:{{name}}
+    </h1>
+    <p v-text='title' class="underline"></p>
+    <p v-html='showAlert' ></p>
+    <button v-bind:disabled="isDisabled">bind </button>
+    <div v-bind:class='status'>dynamic class for status</div>
+    <div v-bind:class="isSuccess? 'success' : 'danger'">Is success or danger?</div>
+    <div v-bind:class="[isGood && 'good',isSuccess? 'success' : 'danger']">Array conditional statement</div>
+    <!-- if isGood is true, the 'good' class is applied -->
+    <div v-bind:class="{ //runs from the first to the end until find the class with the true statement and apply the style on the UI, can be mutiple classes
+      good:!isGood,
+      danger:!isSuccess,
+      'success':isSuccess
+    }">Object conditional statement</div>
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  name:'vue-app',
+  data(){
+  return {
+    name:'Bea Blome',
+    title:'software developer',
+    showAlert: `<button onclick="alert('yes')">click</button>`,
+    status:'danger',
+    isDisabled:true,
+    isGood:true,
+    isSuccess: true
   }
 }
+}
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.underline{
+  color:purple;
+  text-decoration: underline;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.success {
+  color: green;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.danger{
+  color:red
 }
-a {
-  color: #42b983;
+.good {
+  color:blue
 }
 </style>
