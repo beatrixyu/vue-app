@@ -16,6 +16,21 @@
       danger:!isSuccess,
       'success':isSuccess
     }">Object conditional statement</div>
+    <div v-bind:style="{
+      color: headerColor,
+      'font-size': headerSize + 'px',
+      marginTop: '100px'
+    }">Style - inline style</div>
+    <div v-bind:style="packageStyle">Style Object</div>
+    <div v-if="num === 0">Number is 0</div>
+    <div v-else-if="num > 0">Number is more than 0</div>
+    <div v-else-if="num < 0">Number is less than 0</div>
+
+    <div v-else>Number is NOT  0</div>
+    <div v-show="isShow">v-show </div>
+    <div>number calculator - {{mutiple(2)}}</div>
+    <div>number calculator - {{add(2,3,4)}}</div>
+
 
   </div>
 </template>
@@ -31,9 +46,28 @@ export default {
     status:'danger',
     isDisabled:true,
     isGood:true,
-    isSuccess: true
+    isSuccess: true,
+    headerColor: 'yellow',
+    headerSize: 50,
+    packageStyle:{
+      fontSize: '50px',
+      'margin-top':'20px',
+      color:'orange',
+    },
+    num:8,
+    isShow:true,
+    basicNum: 4
   }
-}
+},
+methods:{
+    mutiple(num){
+        return num*this.basicNum
+    },
+    add(x,y,z){
+      return x+y+z
+    }
+
+},
 }
 </script>
 <style scoped>
@@ -50,4 +84,5 @@ export default {
 .good {
   color:blue
 }
+
 </style>
