@@ -30,7 +30,65 @@
     <div v-show="isShow">v-show </div>
     <div>number calculator - {{mutiple(2)}}</div>
     <div>number calculator - {{add(2,3,4)}}</div>
-
+    <h2>{{name}}</h2>
+    <button v-on:click="changeName, incrementFunc(2)">click</button>
+    <button v-on:mouseover="name='Chris'">mouseover</button>
+    
+    <h2>{{count}}</h2>
+    <button @click="count+=1">increment</button>
+    <button @click="count-=1">decrement</button>
+    <button @click="incrementFunc(5)">increment 5</button>
+    <button @click="decrementFunc(5)">decrement 5</button>
+    
+    <pre>{{JSON.stringify(formValue, null,2)}}</pre>
+    <form action="submit" @submit="onSubmit">
+      <div>
+        <label for="name">name</label>
+        <input type="text" id="name" v-model="formValue.name">
+      </div>
+      <div>
+        <label for="profile">Profile</label>
+        <textarea type="text" id="profile" v-model="formValue.profile"/>
+      </div>
+      <div>
+        <label for="country">Choose I place you wanna live</label>
+        <select name="country" id="country" v-model="formValue.country">
+          <option value="">Select a country</option>
+          <option value="USA">USA</option>
+          <option value="England">England</option>
+          <option value="Germany">Germany</option>
+        </select>
+      </div>
+      <div>
+        <label for="jobLocation">Choose I place you wanna work</label>
+        <select name="jobLocation" id="jobLocation" multiple v-model="formValue.jobLocation">
+          <option value="USA">USA</option>
+          <option value="England">England</option>
+          <option value="Germany">Germany</option>
+        </select>
+      </div>
+      <div>
+        <input type="checkbox" name="remoteWork" id="remoteWork" v-model="formValue.remoteWork" true-value="yes" false-value="no">
+        <label for="remoteWork">Open to remote work?</label>
+      </div>
+      <div>
+        <input type="checkbox" value="react" id="react" v-model="formValue.techSet">
+        <label for="react">react</label>
+        <input type="checkbox" value="vue" id="vue" v-model="formValue.techSet">
+        <label for="vue">Vue</label>
+        <input type="checkbox" value="javascript" id="javascript" v-model="formValue.techSet">
+        <label for="javascript">Javascript</label>
+      </div>
+      <div>
+        <input type="radio" value="1-2" id="year" v-model="formValue.yearsOfExperience">
+        <label for="yearsOfExperience">1-2</label>
+        <input type="radio" value="2-5" id="year" v-model="formValue.yearsOfExperience">
+        <label for="yearsOfExperience">2-5</label>
+        <input type="radio" value="5+" id="year" v-model="formValue.yearsOfExperience">
+        <label for="yearsOfExperience">5+</label>
+      </div>
+      <button>Submit</button>
+    </form>
 
   </div>
 </template>
@@ -56,7 +114,18 @@ export default {
     },
     num:8,
     isShow:true,
-    basicNum: 4
+    basicNum: 4,
+    count:0,
+    formValue:{
+      name:'',
+      profile:'',
+      country:'',
+      jobLocation: [],
+      remoteWork: 'no',
+      techSet:[],
+      yearsOfexperience:''
+    }
+    
   }
 },
 methods:{
@@ -65,6 +134,20 @@ methods:{
     },
     add(x,y,z){
       return x+y+z
+    },
+    incrementFunc(num){
+     this.count += num
+    },
+    decrementFunc(num){
+     this.count -= num
+    },
+    ChangeName(){
+      return this.name = 'chris'
+    },
+    onSubmit(event){
+     event.preventDefault();
+     console.log('formvalue', this.formValue)
+     //under the target in the event console
     }
 
 },
