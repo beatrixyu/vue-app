@@ -1,15 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<div>
+  <HelloWorld/>
+ <Greet :username='name' :usertitle='title'/>
+ <Greet username='name' usertitle='title'/>
+ <Greet username='Bea' usertitle='Blome'/>
+ <ObjectProps name='chris' :age='30' :isMarried='true'/>
+
+ </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import Greet from './components/Greet.vue'
+import ObjectProps from './components/ObjectProps.vue'
+
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    Greet,
+    ObjectProps,
+  },
+  data(){
+    return {
+      name:'yes hallo',
+      title:'developer'
+    }
   }
 }
 </script>
