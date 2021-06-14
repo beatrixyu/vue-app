@@ -1,6 +1,6 @@
 <template>
     <div>
-       Greet {{username}} {{usertitle}}
+       ArrayProps - {{username}} {{usertitle}}
     </div>
 </template>
 

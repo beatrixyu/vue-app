@@ -1,6 +1,6 @@
 <template>
     <div>
-    my name is {{name}}, I am {{age}} years old, I am {{isMarried?'married':'single'}}
+   Object Props - my name is {{name}}, I am {{age}} years old, I am {{isMarried?'married':'single'}}
     </div>
 </template>
 
